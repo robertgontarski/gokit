@@ -20,8 +20,16 @@ func initLogger() {
 }
 
 func openLogFile() *os.File {
+	path, isPath := Env["APP_LOG_PATH"]
+	fileName, isFileName := Env["APP_LOG_FILE"]
+	if !isPath {
+		path = "./"
+	}
+	if !isFileName {
+		fileName = "file"
+	}
 
-	file, err := os.OpenFile(fmt.Sprintf("var/log/%s.log", Env["APP_ENV"]), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+	file, err := os.OpenFile(fmt.Sprintf("%s%s.log", path, fileName), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 	if err != nil {
 		panic(err)
 	}
