@@ -20,6 +20,14 @@ var (
 )
 ```
 
+Example of use
+
+```go
+
+Env["APP_ENV"]
+
+```
+
 ### Logger
 
 Provides several types of predefined logs that write to files
@@ -31,4 +39,20 @@ The basic name is **file** in the **main folder** of the project
 ```dotenv
 APP_LOG_FILE="file_name"
 APP_LOG_PATH="file_path"
+```
+
+To use the logs, call one of the predefined variables
+
+```go
+var (
+	InfoLogger    *log.Logger
+	WarningLogger *log.Logger
+	ErrorLogger   *log.Logger
+)
+```
+
+Example of use 
+
+```go
+ErrorLogger.Println(err)
 ```
